@@ -1,7 +1,7 @@
 import fs from "node:fs"
 import path from "node:path"
 
-export const parseInput = (filename: string): [number[], number[]] => {
+const parseInput = (filename: string): [number[], number[]] => {
   const file_path = path.join(__dirname, filename)
   const file = fs.readFileSync(file_path, 'utf-8')
   const lines = file.split('\n')
@@ -16,6 +16,16 @@ export const parseInput = (filename: string): [number[], number[]] => {
   return [left, right]
 }
 
+const findNumberOfOccurrence = (arr: number[], value: number): number => {
+  let count = 0
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === value) {
+      count++
+    }
+  }
+  return count
+}
+
 export const part1 = (filename: string): number => {
   const [left, right] = parseInput(filename)
   let total = 0
@@ -28,15 +38,6 @@ export const part1 = (filename: string): number => {
   return total
 }
 
-const findNumberOfOccurrence = (arr: number[], value: number): number => {
-  let count = 0
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === value) {
-      count++
-    }
-  }
-  return count
-}
 
 export const part2 = (filename: string): number => {
   const [left, right] = parseInput(filename)
